@@ -12,4 +12,4 @@ To run this script, you'll need Python installed on your machine. You can downlo
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/brand-name-generator.git
+   git clone https://github.com/annapurna-gupta/brand-name-generator.git
