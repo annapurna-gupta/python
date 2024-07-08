@@ -1,1 +1,64 @@
+import random
+user_input = int(input("What do you choose? 0 for rock , 1 for paper , 2 for scissors\n"))
+
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+if user_input == 0:
+    print("you chooses rock")
+    print(rock)
+elif user_input == 1:
+    print("you chooses paper")
+    print(paper)
+elif user_input == 2:
+    print("you chooses scissors")
+    print(scissors)
+
+# computer chance to play
+random_output = random.randint(0,2)
+print("computer choice")
+if random_output == 0:
+    print("rock")
+    print(rock)
+elif random_output == 1:
+    print("paper")
+    print(paper)
+elif random_output == 2:
+    print("scissors")
+    print(scissors)
+
+# checking for the winner
+
+if random_output == user_input :
+    print("MATCH TIE")
+elif  random_output == 0 and user_input == 2 or random_output == 1 and user_input == 0 :
+    print("YOU LOOSE!!")
+    print("Computer wins.")
+else :
+    print("YOU WINS!!")
+    print("Computer loose")
 
