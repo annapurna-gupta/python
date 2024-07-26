@@ -3,23 +3,69 @@ def deal_card():
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
 
-user_cards = []
-computer_cards = []
-
-for _ in range(2):
-    user_cards.append(deal_card)
-    computer_cards.append(deal_card)
-
 def calculate_score(cards):
-    if 10 in cards and 11 in cards and len(cards) == 2:
+    if sum(cards) == 21  and len(cards) == 2:
         return 0
-
     if 11 in cards and sum(cards) > 21:
-        cards.romove(11)
+        cards.remove(11)
         cards.append(1)
-        
     return sum(cards)
 
+user_cards = []
+computer_cards = []
+is_game_over = False
 
+for _ in range(2):
+    user_cards.append(deal_card())
+    computer_cards.append(deal_card())
+
+user_score = calculate_score(user_cards)
+computer_score = calculate_score(computer_cards)
+
+def compare(user_score , computer_score):
+    if computer_score == user_score:
+        return "Match Draw"
+    elif user_score == 0:
+        return "you win"
+    elif computer_score == 0:
+        return "computer win"
+    elif user_score > 21:
+        return "You went over 21, You lost"
+    elif computer_score > 21:
+        return "Computer lost"
+    elif user_score > computer_score:
+        return "You win over computer"
+    else :
+        return "you lost, computer wins"
+
+waana_play = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+if waana_play == "y":
+    from art import logo
+    print(logo)
+    print(f"your card: {user_cards}, current score: {user_score}: ")
+    print(f"computer's first card {computer_cards[0]: }")
+
+    while is_game_over == False:
+        check = input("Type 'y' to get another card, type 'n' to pass: ")
+        if check == "y":
+            user_cards.append(deal_card())
+            user_score = calculate_score(user_cards)
+            computer_score = sum(computer_cards)
+            calculate_score(user_cards)
+            if user_score == 0 or computer_score == 0 or user_score > 21:
+                is_game_over = True
+            print(f"your card {user_cards}, total score {user_score}")
+            print(f"computer first card {computer_cards[0]}")
+        else :
+            is_game_over = True
+
+    while not is_game_over and computer_score != 0 and computer_score < 17:
+        computer_cards.append(deal_card())
+        computer_score = calculate_score(computer_cards)
+
+    result = compare(user_score, computer_score)
+    print(f"Your final cards: {user_cards} ,Final score: {user_score}")
+    print(f"computer's final cards: {computer_cards} ,Final score: {computer_score}")
+    print(result)
 
 
