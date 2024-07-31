@@ -1,0 +1,42 @@
+from art import logo2
+from art import vs
+from word import data
+import random
+
+print(logo2)
+def get_random():
+    random_value = random.choice(data)
+    one = random_value['name']
+    two = random_value['description']
+    three = random_value['country']
+    four = random_value['follower_count']
+    return random_value
+
+def compare():
+    final_score = 0
+    game_end = False
+    person_a = get_random()
+    print(f"Compare A: {person_a['name']}, a {person_a["description"]}, from {person_a["country"]} ")
+    while game_end == False:
+        print(vs)
+        person_b = get_random()
+        print(f"Compare B: {person_b["name"]}, a {person_b["description"]}, from {person_b["country"]}")
+        user_input= input("Who has more follower? Type 'A' or 'B': ").upper()
+
+        if user_input == 'A' and person_a["follower_count"] > person_b["follower_count"]:
+            final_score += 1
+            print(f"you are right, score {final_score}")
+            print(f"Compare A: {person_a['name']}, a {person_a["description"]}, from {person_a["country"]}")
+
+        elif user_input == 'B' and person_b["follower_count"] > person_a["follower_count"]:
+            final_score += 1
+            print(f"you are right, score {final_score}")
+            person_a = person_b
+            print(f"Compare A: {person_a['name']}, a {person_a["description"]}, from {person_a["country"]} ")
+
+        else:
+            print(f"Sorry, that's wrong. Final score {final_score}")
+            game_end = True
+
+compare()
+
