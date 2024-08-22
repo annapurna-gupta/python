@@ -12,6 +12,8 @@ color_list = [ (57, 90, 111), (163, 89, 64), (210, 212, 214), (208, 211, 208),
 tim = Turtle()
 screen = Screen()
 tim.penup()
+tim.speed("fastest")
+tim.hideturtle()
 tim.setx(-200)
 tim.sety(-200)
 
@@ -20,7 +22,7 @@ for _ in range(10):
         colour = random.choice(color_list)
         tim.dot(20, colour)
         tim.forward(50)
-        print(colour)
+
     tim.setheading(90)
     tim.forward(50)
     tim.setheading(-180)
